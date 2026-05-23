@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>你是什么投资人格？</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#faf8f5;color:#2c2c2c;min-height:100vh}
+.container{max-width:520px;margin:0 auto;padding:24px 20px 40px}
+.page{display:none}
+.page.active{display:block}
+/* 标题页 */
+.title-page{text-align:center;padding:60px 0 40px}
+.title-page .emoji{font-size:56px;margin-bottom:16px}
+.title-page h1{font-size:26px;font-weight:700;color:#1a1a2e;margin-bottom:8px;letter-spacing:1px}
+.title-page .subtitle{font-size:15px;color:#888;margin-bottom:28px}
+.title-page .intro{font-size:14px;color:#666;line-height:1.8;margin-bottom:36px;padding:0 10px}
+.btn{display:inline-block;padding:14px 48px;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,#C47229,#e8943a);color:#fff;box-shadow:0 4px 16px rgba(196,114,41,.3)}
+.btn-primary:active{transform:scale(.97);box-shadow:0 2px 8px rgba(196,114,41,.2)}
+/* 题目页 */
+.quiz-page{padding:0 4px}
+.quiz-page .progress{display:flex;gap:6px;margin-bottom:28px}
+.quiz-page .progress span{flex:1;height:3px;border-radius:3px;background:#e8e4dc;transition:background .3s}
+.quiz-page .progress span.done{background:#C47229}
+.quiz-page .qnum{font-size:12px;color:#aaa;margin-bottom:10px;letter-spacing:2px}
+.quiz-page .question{font-size:18px;font-weight:600;color:#1a1a2e;line-height:1.6;margin-bottom:24px}
+.quiz-page .options{display:flex;flex-direction:column;gap:10px}
+.quiz-page .option{padding:16px 18px;background:#fff;border:1.5px solid #ebe6dc;border-radius:14px;font-size:15px;color:#444;cursor:pointer;transition:all .15s;line-height:1.5}
+.quiz-page .option:active{background:#fef9f2;border-color:#C47229;color:#C47229}
+/* 结果页 */
+.result-page{text-align:center;padding:30px 0 20px}
+.result-page .r-emoji{font-size:64px;margin-bottom:12px}
+.result-page .r-title{font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:6px}
+.result-page .r-tagline{font-size:15px;color:#C47229;margin-bottom:24px;line-height:1.5}
+.result-page .r-desc{font-size:14px;color:#555;line-height:1.9;margin-bottom:24px;padding:0 12px;text-align:left}
+.result-page .card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;text-align:left;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.result-page .card h3{font-size:14px;color:#C47229;margin-bottom:10px}
+.result-page .card ul{list-style:none}
+.result-page .card ul li{font-size:14px;color:#444;line-height:1.8;padding:4px 0;padding-left:16px;position:relative}
+.result-page .card ul li::before{content:'·';position:absolute;left:0;color:#C47229;font-weight:bold}
+.result-page .books{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.result-page .book-tag{display:inline-block;padding:6px 14px;background:#fef9f2;border:1px solid #f0e4d0;border-radius:20px;font-size:12px;color:#C47229;white-space:nowrap}
+/* 底部按钮 */
+.bottom-actions{margin-top:28px;display:flex;flex-direction:column;gap:10px;align-items:center}
+.bottom-actions .btn-share{color:#C47229;font-size:14px;cursor:pointer;padding:10px 28px;border:1.5px solid #C47229;border-radius:50px;background:transparent;font-weight:500}
+.bottom-actions .btn-share:active{background:#fef9f2}
+.bottom-actions .follow{font-size:12px;color:#aaa;margin-top:6px}
+.bottom-actions .follow a{color:#C47229;text-decoration:none}
+/* 分享提示 */
+.share-tip{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.75);z-index:999;display:none;align-items:flex-start;justify-content:flex-end;padding:12px 16px}
+.share-tip.show{display:flex}
+.share-tip .arrow{color:#fff;font-size:15px;text-align:right;line-height:1.6}
+.share-tip .arrow .big{font-size:32px;display:block}
+/* 底部标记 */
+.footer-mark{text-align:center;padding:24px 0 8px;font-size:11px;color:#ccc}
+</style>
+</head>
+<body>
+<div class="container" id="app">
+
+<!-- 标题页 -->
+<div class="page active" id="page-title">
+  <div class="title-page">
+    <div class="emoji">📊</div>
+    <h1>你是什么投资人格？</h1>
+    <p class="subtitle">12道题，测出你亏钱的样子有多好看</p>
+    <p class="intro">每个亏钱的基民都是一样的——心累。<br>但亏钱的方式，各有各的不同。<br>做完这12题，你可能会发现：<br>原来你一直在重复同一个错误。</p>
+    <button class="btn btn-primary" onclick="startQuiz()">开始测试 →</button>
+  </div>
+</div>
+
+<!-- 题目页 -->
+<div class="page" id="page-quiz">
+  <div class="quiz-page">
+    <div class="progress" id="progress"></div>
+    <div class="qnum" id="qnum">QUESTION 1/12</div>
+    <div class="question" id="qtext"></div>
+    <div class="options" id="options"></div>
+  </div>
+</div>
+
+<!-- 结果页 -->
+<div class="page" id="page-result">
+  <div class="result-page" id="result-content"></div>
+</div>
+
+<!-- 分享提示 -->
+<div class="share-tip" id="shareTip" onclick="this.classList.remove('show')">
+  <div class="arrow"><span class="big">☝️</span>点击右上角<br>分享给朋友或朋友圈</div>
+</div>
+
+<div class="footer-mark">律隐堂 · 投资者行为诊断</div>
+
+</div>
+
+<script>
+// 题目数据
+const questions = [
+  {q:'你上一次打开基金/股票App，是因为什么？',opts:[
+    {t:'看看到底跌了多少',w:{anxiety:2,keeper:1}},
+    {t:'朋友说最近行情不错，我看看',w:{chaser:2,herd:1}},
+    {t:'例行公事，每天都看一眼',w:{anxiety:1}},
+    {t:'我忘了，设好就不怎么看',w:{sleeper:3,master:1}}
+  ]},
+  {q:'你的基金涨了20%，你第一反应是？',opts:[
+    {t:'卖！落袋为安',w:{keeper:2}},
+    {t:'看看要不要加仓',w:{chaser:2}},
+    {t:'截图发给朋友看看',w:{chaser:1,anxiety:1}},
+    {t:'涨了也不算什么，继续拿着',w:{sleeper:2,master:2}}
+  ]},
+  {q:'你的基金跌了15%，你第一反应是？',opts:[
+    {t:'赶紧看看发生了什么',w:{anxiety:2}},
+    {t:'正好，补一点，摊低成本',w:{master:2}},
+    {t:'完了完了要不要卖了',w:{keeper:2}},
+    {t:'等几天再说，不急',w:{sleeper:3,master:1}}
+  ]},
+  {q:'朋友说"XX板块最近涨疯了"，你？',opts:[
+    {t:'赶紧问他买的什么',w:{chaser:2}},
+    {t:'先研究一下再说',w:{researcher:2,master:1}},
+    {t:'我不追，错过了就错过了',w:{master:3}},
+    {t:'听听，但不动',w:{sleeper:2}}
+  ]},
+  {q:'刚买完第二天就跌了3%，你？',opts:[
+    {t:'怀疑自己是不是买错了',w:{anxiety:2}},
+    {t:'补一点，摊低成本',w:{master:2}},
+    {t:'正常，短期波动谁说得准',w:{sleeper:2,master:1}},
+    {t:'后悔，早知道昨天不买',w:{gambler:2,anxiety:1}}
+  ]},
+  {q:'最近一周你看了几天收益？',opts:[
+    {t:'每天至少看一次',w:{anxiety:3}},
+    {t:'3-4天，想起来就看',w:{anxiety:1,researcher:1}},
+    {t:'1-2天，忙起来就忘了',w:{sleeper:2}},
+    {t:'不看，反正也不操作',w:{sleeper:2,master:2}}
+  ]},
+  {q:'用一个词定义你的投资方式？',opts:[
+    {t:'信仰 —— "我信这个赛道"',w:{believer:3}},
+    {t:'研究 —— "数据告诉我该买"',w:{researcher:3}},
+    {t:'感觉 —— "我觉得时机到了"',w:{gambler:2,chaser:1}},
+    {t:'规则 —— "到了条件就执行"',w:{master:3}}
+  ]},
+  {q:'你最近一次卖出，是因为什么？',opts:[
+    {t:'赚够了，落袋为安',w:{keeper:2}},
+    {t:'扛不住了，太难受',w:{anxiety:2}},
+    {t:'不看好后市',w:{researcher:2,master:1}},
+    {t:'我好久没卖过了',w:{sleeper:3}}
+  ]},
+  {q:'"定投设好就不用管"，你怎么看？',opts:[
+    {t:'说得对，我就是这么做的',w:{sleeper:3}},
+    {t:'道理都懂但控制不住要去看',w:{anxiety:3}},
+    {t:'定投太慢了，我自己判断时机',w:{chaser:2}},
+    {t:'定投也要讲究方法的',w:{researcher:2}}
+  ]},
+  {q:'账户里好几个品种在亏，你会？',opts:[
+    {t:'全部卖掉，重新来过',w:{anxiety:2,keeper:1}},
+    {t:'只留最看好的，其他砍掉',w:{researcher:2,master:1}},
+    {t:'都留着，等它们回来',w:{believer:2}},
+    {t:'本来就做好了波动的准备',w:{master:3}}
+  ]},
+  {q:'看好的品种没买，后来涨了30%，你感觉？',opts:[
+    {t:'难受，感觉错过了一笔钱',w:{chaser:2}},
+    {t:'我应该相信自己的判断',w:{researcher:2}},
+    {t:'涨那么多了现在不能买了',w:{gambler:2}},
+    {t:'没事，机会有的是',w:{master:3}}
+  ]},
+  {q:'投资这件事，你最缺的是什么？',opts:[
+    {t:'运气 —— "老买在山顶"',w:{gambler:2,chaser:1}},
+    {t:'信息 —— "别人知道的比我早"',w:{chaser:2,researcher:1}},
+    {t:'心态 —— "知道该怎么做但做不到"',w:{anxiety:2}},
+    {t:'钱 —— "有更多本金就好了"',w:{sleeper:1}}
+  ]}
+];
+
+// 8种人格定义
+const types = {
+  chaser:{emoji:'🦅',name:'追风者',tagline:'你总是在涨起来之后才发现机会。',
+    desc:'你不是不想赚钱，你是太想赚钱了——所以你总是在涨到一半的时候才发现它，冲进去，然后它就停了。每次看到别人赚钱，你就坐不住。每次坐不住，你就买在山顶。',
+    pits:['你的买入时机大概领先下跌3天','你对"出圈"的投资标的毫无抵抗力','你以为自己在追机会，其实在追亏掉的钱'],
+    tip:'给自己定一条线。什么样的线不重要——重要的是有一条线，写下来，然后管住自己。',
+    books:['《投资最重要的事》','《"错误"的行为》','《漫步华尔街》']},
+  researcher:{emoji:'📊',name:'研究员',tagline:'你算得太多，看得太少。',
+    desc:'买基金之前拉三张表、看五份研报。你觉得数据够多就能预测方向。但你忘了一件事：市场不在乎你算得多认真。你最大的问题不是不懂，是你太相信自己懂了。',
+    pits:['过度自信让你在错的方向上越走越远','你无法接受"我判断错了"','算得越细，越舍不得认错'],
+    tip:'承认自己不可能比市场知道更多。花一半时间研究，花另一半时间跟自己较劲。',
+    books:['《思考，快与慢》','《黑天鹅》','《反脆弱》']},
+  gambler:{emoji:'🔮',name:'赌徒',tagline:'你觉得自己能预判市场。',
+    desc:'你不是不知道市场不可预测。你是每次都觉得"这次不一样"。连跌7天觉得该涨了，连涨7天觉得还会涨。你大脑里有个骰子一直在转，但你把它当成了晴雨表。',
+    pits:['赌徒谬误是你的出厂设置','补仓不是策略，是你在跟自己打赌','你对"随机"这件事有根本性的误解'],
+    tip:'下次想说"该涨了"的时候，问自己：连续7次正面的硬币，第8次反面的概率是多少？',
+    books:['《随机漫步的傻瓜》','《漫步华尔街》','《非理性繁荣》']},
+  believer:{emoji:'🙏',name:'信仰战士',tagline:'你信的东西，其实你不太说得清楚。',
+    desc:'你不是在投资，是在信仰充值。每个赛道你都信过。但如果被问到"你信它什么？三个具体理由"，你第一反应可能是"它就是会涨"。',
+    pits:['"长期看好"是不卖的理由，不是买的理由','信仰和执念之间只差一条止损线','你所有持仓都叫"信仰"，但只有一个看懂了'],
+    tip:'把所有持仓写下来，每个只写一句话：我具体信它什么。写不出来就不配。',
+    books:['《巴菲特致股东的信》','《聪明的投资者》','《证券分析》']},
+  keeper:{emoji:'🐢',name:'守财奴',tagline:'你亏不起，所以也赚不到。',
+    desc:'止损速度是光速，止盈也是。涨10%就想卖，跌5%就想跑。结果：你所有交易都做对了方向——但从来没拿到过大的涨幅。在大钱面前永远在逃跑。',
+    pits:['损失厌恶让你过早锁定盈利','账户里剩下的都是亏的，盈利的早卖了','年化收益率被无数次"落袋为安"吃掉'],
+    tip:'试试：盈利的品种给自己定一个持有期限，到期前不卖。打破"钱在手里才安全"的条件反射。',
+    books:['《反脆弱》','《金钱心理学》','《纳瓦尔宝典》']},
+  anxiety:{emoji:'⏰',name:'焦虑打卡师',tagline:'你盯盘的时间比上班还长。',
+    desc:'每天打开App至少三次。红的就觉得今天还行，绿的就心里一紧。设了定投——但每天手动补仓。你以为在"关注市场"，其实在给焦虑插电。',
+    pits:['你形成了"打开App = 情绪波动"的条件反射','定投本是"忘掉它"的事，你变成了每天打卡','所有操作都在焦虑峰值上做出的'],
+    tip:'试试每周只看两次账户。第一次会难受，第三次会想不起来。把App收到文件夹最深处。',
+    books:['《金钱心理学》','《当下的力量》']},
+  sleeper:{emoji:'🧘',name:'躺平族',tagline:'你什么都不做，反而赢了很多人。',
+    desc:'买了就放那，跌了不看、涨了不卖、朋友说什么都不动。你不是懒，你是看透了——所有折腾的人最后收益都没你高。你的收益率大概率跑赢了你身边所有焦虑的人。',
+    pits:['真正的风险是买了不理解的东西然后"躺平"','躺平不等于不评估，每年至少审视一次','极端事件时可能被震醒做错操作'],
+    tip:'继续保持。唯一加的动作：每年生日那天做一次账户体检。',
+    books:['《赢得输家的游戏》','《漫步华尔街》','《共同基金常识》']},
+  master:{emoji:'🦉',name:'老法师',tagline:'你有一套自己的方法，而且你信它。',
+    desc:'别人焦虑时你在加仓，别人疯狂时你在等。你不是不亏钱——而是亏的时候你知道为什么亏。你不是不犯错——而是犯错后知道该改什么。你是最稳的那个。',
+    pits:['纪律可能让你错过泡沫红利','有时会被误解为"太保守"','最大的风险：你太自信了——和研究员只有一线之隔'],
+    tip:'你已经很好了。唯一要警惕的：当你开始觉得自己不会犯错的时候。',
+    books:['《证券分析》','《债务危机》','《聪明的投资者》']}
+};
+
+let currentQ=-1,scores=null;
+
+function startQuiz(){currentQ=-1;scores={};switchPage('page-quiz');nextQ();}
+function switchPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function nextQ(){currentQ++;if(currentQ>=questions.length){showResult();return}
+const q=questions[currentQ];
+document.getElementById('qnum').textContent=`QUESTION ${currentQ+1}/12`;
+document.getElementById('qtext').textContent=q.q;
+let bar='';for(let i=0;i<12;i++)bar+=`<span class="${i<currentQ?'done':''}"></span>`;
+document.getElementById('progress').innerHTML=bar;
+let html='';q.opts.forEach((o,i)=>{html+=`<div class="option" onclick="answer(${i})">${o.t}</div>`});
+document.getElementById('options').innerHTML=html;window.scrollTo(0,0);}
+
+function answer(i){const q=questions[currentQ];const w=q.opts[i].w;for(let k in w){scores[k]=(scores[k]||0)+w[k];}nextQ();}
+
+function showResult(){
+  let best=null,bestScore=-1;
+  for(let k in scores){if(scores[k]>bestScore){bestScore=scores[k];best=k;}}
+  const t=types[best];
+  let html=`<div class="r-emoji">${t.emoji}</div>`;
+  html+=`<div class="r-title">${t.name}</div>`;
+  html+=`<div class="r-tagline">${t.tagline}</div>`;
+  html+=`<div class="r-desc">${t.desc}</div>`;
+  html+=`<div class="card"><h3>⚠️ 你的三个坑</h3><ul>`;
+  t.pits.forEach(p=>html+=`<li>${p}</li>`);
+  html+=`</ul></div>`;
+  html+=`<div class="card"><h3>💡 给你的建议</h3><p style="font-size:14px;color:#444;line-height:1.8">${t.tip}</p></div>`;
+  html+=`<div class="card"><h3>📖 适合你读的书</h3><div class="books">`;
+  t.books.forEach(b=>html+=`<span class="book-tag">${b}</span>`);
+  html+=`</div></div>`;
+  html+=`<div class="bottom-actions">`;
+  html+=`<button class="btn-share" onclick="doShare()">🔗 分享给朋友，看看Ta是什么人格</button>`;
+  html+=`<div class="follow">📱 关注 <b>律隐堂</b> · 更多投资自我诊断</div>`;
+  html+=`<button class="btn-share" style="margin-top:6px" onclick="startQuiz()">↻ 再测一次</button>`;
+  html+=`</div>`;
+  document.getElementById('result-content').innerHTML=html;
+  switchPage('page-result');
+}
+
+function doShare(){
+  const isWx=/MicroMessenger/i.test(navigator.userAgent);
+  if(isWx){document.getElementById('shareTip').classList.add('show')}
+  else{
+    navigator.clipboard.writeText(window.location.href).then(()=>alert('链接已复制，去微信粘贴发给朋友吧！'));
+  }
+}
+</script>
+</body>
+</html>
