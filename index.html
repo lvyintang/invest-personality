@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta property="og:title" content="12题测出你的投资人格：原来你总亏钱是这个原因">
-<meta property="og:description" content="追高、拿不住、频繁操作、抄在山腰……12道题测出你的亏钱姿势，90%的人都中了">
+<meta property="og:description" content="追高、拿不住、频繁操作、抄在山腰……12道题测出你的亏钱姿势">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lvyintang.github.io/invest-personality/">
+<meta itemprop="name" content="12题测出你的投资人格：原来你总亏钱是这个原因">
+<meta itemprop="description" content="追高、拿不住、频繁操作、抄在山腰……12道题测出你的亏钱姿势">
+<meta name="description" content="追高、拿不住、频繁操作、抄在山腰……12道题测出你的亏钱姿势。投资最大的幻觉不是"我能赢"，是"这次不一样"。">
 <title>12题测出你的投资人格：原来你总亏钱是这个原因</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -279,12 +282,18 @@ function showResult(){
 function doShare(){
   const url=window.location.origin+window.location.pathname+'?type='+resultType;
   const t=types[resultType];
-  const text='我测出来是'+t.emoji+t.name+'——"'+t.tagline+'"\n12题测出你的投资人格，你也来试试 👉 '+url;
+  const text='我测出来是'+t.emoji+t.name+'——"'+t.tagline+'"\n12题测出你的投资人格，你也来试试 '+url;
   const isWx=/MicroMessenger/i.test(navigator.userAgent);
-  if(isWx){document.getElementById('shareTip').classList.add('show')}
-  else{
-    navigator.clipboard.writeText(text).then(()=>alert('文案已复制！去微信粘贴发给朋友吧'));
+  if(isWx){
+    document.getElementById('shareTip').classList.add('show');
+  }else{
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){alert('文案已复制！去微信粘贴发给朋友吧');}).catch(function(){fallbackCopy(text)});
+    }else{fallbackCopy(text)}
   }
+}
+function fallbackCopy(text){
+  var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('文案已复制！去微信粘贴发给朋友吧');
 }
 </script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
