@@ -67,10 +67,11 @@ body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;b
 <!-- 标题页 -->
 <div class="page active" id="page-title">
   <div class="title-page">
-    <div class="emoji">📊</div>
-    <h1>12题测出你的投资人格</h1>
-    <p class="subtitle">原来你总亏钱是这个原因</p>
-    <p class="intro">追高、拿不住、频繁操作、抄在山腰……<br>这些事儿你干过没有？<br><br>投资最大的幻觉不是"我能赢"，<br>是"这次不一样"。<br><br>12道题，测出你的亏钱姿势。</p>
+    <div class="emoji" id="titleEmoji">📊</div>
+    <h1 id="titleH1">12题测出你的投资人格</h1>
+    <p class="subtitle" id="titleSub">原来你总亏钱是这个原因</p>
+    <div id="friendBanner" style="display:none;background:#fef9f2;border:1px solid #f0e4d0;border-radius:12px;padding:14px 18px;margin-bottom:20px;font-size:14px;color:#C47229;line-height:1.6"></div>
+    <p class="intro" id="titleIntro">追高、拿不住、频繁操作、抄在山腰……<br>这些事儿你干过没有？<br><br>投资最大的幻觉不是"我能赢"，<br>是"这次不一样"。<br><br>12道题，测出你的亏钱姿势。</p>
     <button class="btn btn-primary" onclick="startQuiz()">开始测试 →</button>
   </div>
 </div>
@@ -220,7 +221,21 @@ const types = {
     books:['《证券分析》','《债务危机》','《聪明的投资者》']}
 };
 
-let currentQ=-1,scores=null;
+let currentQ=-1,scores=null,resultType=null;
+
+// Check if opened from friend's share link
+(function(){
+  const p=new URLSearchParams(window.location.search);
+  const type=p.get('type');
+  if(type && types[type]){
+    document.getElementById('titleH1').textContent='你的朋友是"'+types[type].name+'"';
+    document.getElementById('titleSub').textContent='你也来测测，看你们是不是同一类人';
+    document.getElementById('titleEmoji').textContent=types[type].emoji;
+    document.getElementById('titleIntro').innerHTML='有人把这12道题发给了你。<br><br>不是巧合——Ta测出了<b>'+types[type].name+'</b>，<br>想知道你是什么。';
+    document.getElementById('friendBanner').style.display='block';
+    document.getElementById('friendBanner').innerHTML='👋 你的朋友是 <b>'+types[type].emoji+' '+types[type].name+'</b> —— '+types[type].tagline;
+  }
+})();
 
 function startQuiz(){currentQ=-1;scores={};switchPage('page-quiz');nextQ();}
 function switchPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
@@ -238,6 +253,7 @@ function answer(i){const q=questions[currentQ];const w=q.opts[i].w;for(let k in 
 function showResult(){
   let best=null,bestScore=-1;
   for(let k in scores){if(scores[k]>bestScore){bestScore=scores[k];best=k;}}
+  resultType=best;
   const t=types[best];
   let html=`<div class="r-emoji">${t.emoji}</div>`;
   html+=`<div class="r-title">${t.name}</div>`;
@@ -253,6 +269,7 @@ function showResult(){
   html+=`<div class="bottom-actions">`;
   html+=`<button class="btn-share" onclick="doShare()">🔗 分享给朋友，看看Ta是什么人格</button>`;
   html+=`<div class="follow">📱 关注 <b>律隐堂</b> · 更多投资自我诊断</div>`;
+  html+=`<div style="font-size:12px;color:#aaa;margin-top:4px">长按截图发朋友圈，看看谁和你同一类 👇</div>`;
   html+=`<button class="btn-share" style="margin-top:6px" onclick="startQuiz()">↻ 再测一次</button>`;
   html+=`</div>`;
   document.getElementById('result-content').innerHTML=html;
@@ -260,10 +277,11 @@ function showResult(){
 }
 
 function doShare(){
+  const url=window.location.origin+window.location.pathname+'?type='+resultType;
   const isWx=/MicroMessenger/i.test(navigator.userAgent);
   if(isWx){document.getElementById('shareTip').classList.add('show')}
   else{
-    navigator.clipboard.writeText(window.location.href).then(()=>alert('链接已复制，去微信粘贴发给朋友吧！'));
+    navigator.clipboard.writeText(url).then(()=>alert('链接已复制！发给朋友，Ta打开就能看到你的人格'));
   }
 }
 </script>
