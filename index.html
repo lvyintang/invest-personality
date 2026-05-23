@@ -106,39 +106,39 @@ body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;b
 const questions = [
   {q:'你上一次打开基金/股票App，是因为什么？',opts:[
     {t:'看看到底跌了多少',w:{anxiety:2,keeper:1}},
-    {t:'朋友说最近行情不错，我看看',w:{chaser:2,herd:1}},
+    {t:'朋友说最近行情不错，我看看',w:{chaser:2}},
     {t:'例行公事，每天都看一眼',w:{anxiety:1}},
-    {t:'我忘了，设好就不怎么看',w:{sleeper:3,master:1}}
+    {t:'我忘了，设好就不怎么看',w:{sleeper:3}}
   ]},
   {q:'你的基金涨了20%，你第一反应是？',opts:[
     {t:'卖！落袋为安',w:{keeper:2}},
     {t:'看看要不要加仓',w:{chaser:2}},
     {t:'截图发给朋友看看',w:{chaser:1,anxiety:1}},
-    {t:'涨了也不算什么，继续拿着',w:{sleeper:2,master:2}}
+    {t:'涨了也不算什么，继续拿着',w:{sleeper:2,master:1}}
   ]},
   {q:'你的基金跌了15%，你第一反应是？',opts:[
     {t:'赶紧看看发生了什么',w:{anxiety:2}},
     {t:'正好，补一点，摊低成本',w:{master:2}},
     {t:'完了完了要不要卖了',w:{keeper:2}},
-    {t:'等几天再说，不急',w:{sleeper:3,master:1}}
+    {t:'等几天再说，不急',w:{sleeper:3}}
   ]},
   {q:'朋友说"XX板块最近涨疯了"，你？',opts:[
     {t:'赶紧问他买的什么',w:{chaser:2}},
     {t:'先研究一下再说',w:{researcher:2,master:1}},
-    {t:'我不追，错过了就错过了',w:{master:3}},
+    {t:'我不追，错过了就错过了',w:{master:2}},
     {t:'听听，但不动',w:{sleeper:2}}
   ]},
   {q:'刚买完第二天就跌了3%，你？',opts:[
     {t:'怀疑自己是不是买错了',w:{anxiety:2}},
     {t:'补一点，摊低成本',w:{master:2}},
-    {t:'正常，短期波动谁说得准',w:{sleeper:2,master:1}},
+    {t:'正常，短期波动谁说得准',w:{sleeper:3}},
     {t:'后悔，早知道昨天不买',w:{gambler:2,anxiety:1}}
   ]},
   {q:'最近一周你看了几天收益？',opts:[
     {t:'每天至少看一次',w:{anxiety:3}},
     {t:'3-4天，想起来就看',w:{anxiety:1,researcher:1}},
     {t:'1-2天，忙起来就忘了',w:{sleeper:2}},
-    {t:'不看，反正也不操作',w:{sleeper:2,master:2}}
+    {t:'不看，反正也不操作',w:{sleeper:3}}
   ]},
   {q:'用一个词定义你的投资方式？',opts:[
     {t:'信仰 —— "我信这个赛道"',w:{believer:3}},
@@ -149,7 +149,7 @@ const questions = [
   {q:'你最近一次卖出，是因为什么？',opts:[
     {t:'赚够了，落袋为安',w:{keeper:2}},
     {t:'扛不住了，太难受',w:{anxiety:2}},
-    {t:'不看好后市',w:{researcher:2,master:1}},
+    {t:'不看好后市',w:{researcher:2}},
     {t:'我好久没卖过了',w:{sleeper:3}}
   ]},
   {q:'"定投设好就不用管"，你怎么看？',opts:[
@@ -162,13 +162,13 @@ const questions = [
     {t:'全部卖掉，重新来过',w:{anxiety:2,keeper:1}},
     {t:'只留最看好的，其他砍掉',w:{researcher:2,master:1}},
     {t:'都留着，等它们回来',w:{believer:2}},
-    {t:'本来就做好了波动的准备',w:{master:3}}
+    {t:'本来就做好了波动的准备',w:{master:2}}
   ]},
   {q:'看好的品种没买，后来涨了30%，你感觉？',opts:[
     {t:'难受，感觉错过了一笔钱',w:{chaser:2}},
     {t:'我应该相信自己的判断',w:{researcher:2}},
     {t:'涨那么多了现在不能买了',w:{gambler:2}},
-    {t:'没事，机会有的是',w:{master:3}}
+    {t:'没事，机会有的是',w:{master:1}}
   ]},
   {q:'投资这件事，你最缺的是什么？',opts:[
     {t:'运气 —— "老买在山顶"',w:{gambler:2,chaser:1}},
@@ -278,10 +278,12 @@ function showResult(){
 
 function doShare(){
   const url=window.location.origin+window.location.pathname+'?type='+resultType;
+  const t=types[resultType];
+  const text='我测出来是'+t.emoji+t.name+'——"'+t.tagline+'"\n12题测出你的投资人格，你也来试试 👉 '+url;
   const isWx=/MicroMessenger/i.test(navigator.userAgent);
   if(isWx){document.getElementById('shareTip').classList.add('show')}
   else{
-    navigator.clipboard.writeText(url).then(()=>alert('链接已复制！发给朋友，Ta打开就能看到你的人格'));
+    navigator.clipboard.writeText(text).then(()=>alert('文案已复制！去微信粘贴发给朋友吧'));
   }
 }
 </script>
