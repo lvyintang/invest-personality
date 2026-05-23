@@ -109,21 +109,21 @@ body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;b
 const questions = [
   {q:'你上一次打开基金/股票App，是因为什么？',opts:[
     {t:'看看到底跌了多少',w:{anxiety:2,keeper:1}},
-    {t:'朋友说最近行情不错，我看看',w:{chaser:2,gambler:1}},
+    {t:'朋友说最近行情不错，我看看',w:{chaser:2}},
     {t:'例行公事，每天都看一眼',w:{anxiety:1}},
     {t:'我忘了，设好就不怎么看',w:{sleeper:3}}
   ]},
   {q:'你的基金涨了20%，你第一反应是？',opts:[
     {t:'卖！落袋为安',w:{keeper:2}},
-    {t:'看看要不要加仓',w:{chaser:2,gambler:1}},
+    {t:'看看要不要加仓',w:{chaser:2}},
     {t:'截图发给朋友看看',w:{chaser:1,anxiety:1}},
-    {t:'涨了也不算什么，继续拿着',w:{sleeper:2,master:1,believer:1}}
+    {t:'涨了也不算什么，继续拿着',w:{sleeper:2,master:1}}
   ]},
   {q:'你的基金跌了15%，你第一反应是？',opts:[
     {t:'赶紧看看发生了什么',w:{anxiety:2}},
     {t:'正好，补一点，摊低成本',w:{master:2}},
     {t:'完了完了要不要卖了',w:{keeper:2}},
-    {t:'等几天再说，不急',w:{sleeper:3,believer:1}}
+    {t:'等几天再说，不急',w:{sleeper:3}}
   ]},
   {q:'朋友说"XX板块最近涨疯了"，你？',opts:[
     {t:'赶紧问他买的什么',w:{chaser:2}},
@@ -135,7 +135,7 @@ const questions = [
     {t:'怀疑自己是不是买错了',w:{anxiety:2}},
     {t:'补一点，摊低成本',w:{master:2}},
     {t:'正常，短期波动谁说得准',w:{sleeper:3}},
-    {t:'后悔，早知道昨天不买',w:{gambler:2,anxiety:1,keeper:1}}
+    {t:'后悔，早知道昨天不买',w:{gambler:2,anxiety:1}}
   ]},
   {q:'最近一周你看了几天收益？',opts:[
     {t:'每天至少看一次',w:{anxiety:3}},
@@ -153,7 +153,7 @@ const questions = [
     {t:'赚够了，落袋为安',w:{keeper:2}},
     {t:'扛不住了，太难受',w:{anxiety:2}},
     {t:'不看好后市',w:{researcher:2}},
-    {t:'我好久没卖过了',w:{sleeper:3,believer:1}}
+    {t:'我好久没卖过了',w:{sleeper:3}}
   ]},
   {q:'"定投设好就不用管"，你怎么看？',opts:[
     {t:'说得对，我就是这么做的',w:{sleeper:3}},
@@ -168,7 +168,7 @@ const questions = [
     {t:'本来就做好了波动的准备',w:{master:2}}
   ]},
   {q:'看好的品种没买，后来涨了30%，你感觉？',opts:[
-    {t:'难受，感觉错过了一笔钱',w:{chaser:2,keeper:1}},
+    {t:'难受，感觉错过了一笔钱',w:{chaser:2}},
     {t:'我应该相信自己的判断',w:{researcher:2}},
     {t:'涨那么多了现在不能买了',w:{gambler:2}},
     {t:'没事，机会有的是',w:{master:1}}
