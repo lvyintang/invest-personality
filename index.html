@@ -272,8 +272,8 @@ function showResult(){
   html+=`</div></div>`;
   html+=`<div class="bottom-actions">`;
   html+=`<button class="btn-share" onclick="doShare()">🔗 分享给朋友，看看Ta是什么人格</button>`;
-  html+=`<div class="follow">📱 关注 <b>律隐堂</b> · 更多投资自我诊断</div>`;
-  html+=`<button class="btn-share" style="margin-top:6px" onclick="startQuiz()">↻ 再测一次</button>`;
+  html+=`<div class="card" style="text-align:center;margin-top:4px"><p style="font-size:14px;color:#444;line-height:1.7">你是<b>${t.name}</b>型。<br>想搞清楚你为什么总掉进同一个坑？<br>微信搜索 <b style="color:#C47229">律隐堂</b><br>每篇拆一个投资盲区。</p></div>`;
+  html+=`<button class="btn-share" style="margin-top:12px" onclick="startQuiz()">↻ 再测一次</button>`;
   html+=`</div>`;
   document.getElementById('result-content').innerHTML=html;
   switchPage('page-result');
