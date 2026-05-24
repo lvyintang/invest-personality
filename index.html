@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -36,25 +36,45 @@ body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;b
 .quiz-page .options{display:flex;flex-direction:column;gap:10px}
 .quiz-page .option{padding:16px 18px;background:#fff;border:1.5px solid #ebe6dc;border-radius:14px;font-size:15px;color:#444;cursor:pointer;transition:all .15s;line-height:1.5}
 .quiz-page .option:active{background:#fef9f2;border-color:#C47229;color:#C47229}
-/* 结果页 */
-.result-page{text-align:center;padding:30px 0 20px}
-.result-page .r-emoji{font-size:64px;margin-bottom:12px}
-.result-page .r-title{font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:6px}
-.result-page .r-tagline{font-size:15px;color:#C47229;margin-bottom:24px;line-height:1.5}
-.result-page .r-desc{font-size:14px;color:#555;line-height:1.9;margin-bottom:24px;padding:0 12px;text-align:left}
-.result-page .card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;text-align:left;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.result-page .card h3{font-size:14px;color:#C47229;margin-bottom:10px}
-.result-page .card ul{list-style:none}
-.result-page .card ul li{font-size:14px;color:#444;line-height:1.8;padding:4px 0;padding-left:16px;position:relative}
-.result-page .card ul li::before{content:'·';position:absolute;left:0;color:#C47229;font-weight:bold}
-.result-page .books{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.result-page .book-tag{display:inline-block;padding:6px 14px;background:#fef9f2;border:1px solid #f0e4d0;border-radius:20px;font-size:12px;color:#C47229;white-space:nowrap}
-/* 底部按钮 */
-.bottom-actions{margin-top:28px;display:flex;flex-direction:column;gap:10px;align-items:center}
+  /* 结果卡片 */
+.result-page{padding:20px 0 20px}
+.result-card{background:#fff;border-radius:20px;padding:32px 26px 26px;box-shadow:0 4px 20px rgba(0,0,0,.05);position:relative;overflow:hidden;margin-bottom:20px}
+.result-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px}
+.rc1::before{background:linear-gradient(90deg,#f0a060,#e8c840)}
+.rc2::before{background:linear-gradient(90deg,#5b9bd5,#3b7ec0)}
+.rc3::before{background:linear-gradient(90deg,#e05050,#c0392b)}
+.rc4::before{background:linear-gradient(90deg,#8e6fc4,#6c4fa0)}
+.rc5::before{background:linear-gradient(90deg,#4dab8e,#3b8a72)}
+.rc6::before{background:linear-gradient(90deg,#e8655a,#f0a060)}
+.rc7::before{background:linear-gradient(90deg,#7fb882,#5a9e62)}
+.rc8::before{background:linear-gradient(90deg,#3a5070,#2c3e54)}
+.result-card .r-emoji{font-size:42px;line-height:1;margin-bottom:8px}
+.result-card .r-title{font-size:26px;font-weight:700;color:#2c2c2c;margin-bottom:2px}
+.result-card .r-tagline{font-size:15px;color:#999;margin-bottom:18px}
+.result-card .r-section{margin-bottom:16px}
+.result-card .r-section-label{font-size:12px;font-weight:600;letter-spacing:2px;margin-bottom:6px}
+.rc1 .r-section-label{color:#e8a040}.rc2 .r-section-label{color:#5b9bd5}.rc3 .r-section-label{color:#e05050}.rc4 .r-section-label{color:#8e6fc4}
+.rc5 .r-section-label{color:#4dab8e}.rc6 .r-section-label{color:#e8655a}.rc7 .r-section-label{color:#7fb882}.rc8 .r-section-label{color:#3a5070}
+.result-card .r-pits{list-style:none;padding:0}
+.result-card .r-pits li{font-size:13px;color:#666;padding:5px 0 5px 18px;position:relative;line-height:1.6}
+.result-card .r-pits li::before{content:"";position:absolute;left:2px;top:12px;width:5px;height:5px;border-radius:50%}
+.rc1 .r-pits li::before{background:#e8c840}.rc2 .r-pits li::before{background:#5b9bd5}.rc3 .r-pits li::before{background:#e05050}.rc4 .r-pits li::before{background:#8e6fc4}
+.rc5 .r-pits li::before{background:#4dab8e}.rc6 .r-pits li::before{background:#e8c840}.rc7 .r-pits li::before{background:#7fb882}.rc8 .r-pits li::before{background:#6b8eab}
+.result-card .r-highlight{border-radius:10px;padding:14px 16px;font-size:14px;line-height:1.7}
+.rc1 .r-highlight{background:#fef5e8;color:#6b4c20}.rc2 .r-highlight{background:#eef5fb;color:#2c4a6b}
+.rc3 .r-highlight{background:#fef0f0;color:#6b2c2c}.rc4 .r-highlight{background:#f5f0fa;color:#3c2c5b}
+.rc5 .r-highlight{background:#eef8f2;color:#2b4a3a}.rc6 .r-highlight{background:#fdf6e8;color:#5c4a2e}
+.rc7 .r-highlight{background:#eef7ef;color:#2b4a2e}.rc8 .r-highlight{background:#eef2f6;color:#2c3a4a}
+.result-card .r-books{display:flex;flex-wrap:wrap;gap:6px}
+.result-card .r-book-tag{font-size:12px;color:#888;background:#f5f5f5;padding:4px 10px;border-radius:12px}
+.result-card .r-cta{text-align:center;margin-top:12px;padding-top:14px;border-top:1px solid #f0f0f0;font-size:13px;color:#888;letter-spacing:.5px}
+.rc1 .r-cta strong{color:#e8a040}.rc2 .r-cta strong{color:#5b9bd5}.rc3 .r-cta strong{color:#e05050}.rc4 .r-cta strong{color:#8e6fc4}
+.rc5 .r-cta strong{color:#4dab8e}.rc6 .r-cta strong{color:#e8655a}.rc7 .r-cta strong{color:#7fb882}.rc8 .r-cta strong{color:#3a5070}
+  /* 底部按钮 */
+.bottom-actions{margin-top:24px;display:flex;flex-direction:column;gap:10px;align-items:center}
 .bottom-actions .btn-share{color:#C47229;font-size:14px;cursor:pointer;padding:10px 28px;border:1.5px solid #C47229;border-radius:50px;background:transparent;font-weight:500}
 .bottom-actions .btn-share:active{background:#fef9f2}
-.bottom-actions .follow{font-size:12px;color:#aaa;margin-top:6px}
-.bottom-actions .follow a{color:#C47229;text-decoration:none}
+
 /* 分享提示 */
 .share-tip{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.75);z-index:999;display:none;align-items:flex-start;justify-content:flex-end;padding:12px 16px}
 .share-tip.show{display:flex}
@@ -73,10 +93,10 @@ body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;b
     <div class="emoji" id="titleEmoji">📊</div>
     <h1 id="titleH1">买基金的人，只有8种结局</h1>
     <p class="subtitle" id="titleSub">12道题测出你是哪一种</p>
-    <div style="font-size:11px;color:#C47229;margin-bottom:8px;letter-spacing:1px">🧩 本测试针对基金投资者</div>
+    <div style="font-size:12px;color:#C47229;background:#fef9f2;border:1px solid #f0e4d0;border-radius:8px;padding:8px 16px;margin-bottom:16px;letter-spacing:1px">🧩 本测试针对<b>基金</b>投资者（股票玩家结果可能不准哦）</div>
     <div id="friendBanner" style="display:none;background:#fef9f2;border:1px solid #f0e4d0;border-radius:12px;padding:14px 18px;margin-bottom:20px;font-size:14px;color:#C47229;line-height:1.6"></div>
-    <p class="intro" id="titleIntro">追高、拿不住、频繁操作、抄在山腰……<br>这些事儿你干过没有？<br><br>投资最大的幻觉不是"我能赢"，<br>是"这次不一样"。<br><br>12道题，测出你的亏钱姿势。</p>
-    <div style="font-size:12px;color:#bbb;margin-bottom:20px"><span id="busuanzi_container_site_pv" style="display:none">👁 <span id="busuanzi_value_site_pv"></span> 人已测</span></div>
+    <p class="intro" id="titleIntro">追高、拿不住、频繁操作、抄在山腰……<br>这些事儿你干过没有？<br><br>投资最大的幻觉不是"我能赢"，<br>是"这次不一样"。</p>
+    <div style="font-size:12px;color:#bbb;margin-bottom:20px"><span id="testCount">👁 <span id="testCountNum">0</span> 人已测</span></div>
     <button class="btn btn-primary" onclick="startQuiz()">开始测试 →</button>
   </div>
 </div>
@@ -108,11 +128,11 @@ body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;b
 <script>
 // 题目数据
 const questions = [
-  {q:'你上一次打开基金/股票App，是因为什么？',opts:[
-    {t:'看看到底跌了多少',w:{anxiety:2,keeper:1}},
+  {q:'你上一次打开基金App，是因为什么？',opts:[
+    {t:'看看到底跌了多少',w:{anxiety:1,keeper:1}},
     {t:'朋友说最近行情不错，我看看',w:{chaser:2}},
     {t:'例行公事，每天都看一眼',w:{anxiety:1}},
-    {t:'我忘了，设好就不怎么看',w:{sleeper:3}}
+    {t:'看了下，没操作——涨跌都那样',w:{master:2,sleeper:1}},{t:'我忘了，设好就不怎么看',w:{sleeper:3}}
   ]},
   {q:'你的基金涨了20%，你第一反应是？',opts:[
     {t:'卖！落袋为安',w:{keeper:2}},
@@ -121,10 +141,10 @@ const questions = [
     {t:'涨了也不算什么，继续拿着',w:{sleeper:2,master:1}}
   ]},
   {q:'你的基金跌了15%，你第一反应是？',opts:[
-    {t:'赶紧看看发生了什么',w:{anxiety:2}},
+    {t:'赶紧看看发生了什么',w:{anxiety:1}},
     {t:'正好，补一点，摊低成本',w:{master:2}},
     {t:'完了完了要不要卖了',w:{keeper:2}},
-    {t:'等几天再说，不急',w:{sleeper:3}}
+    {t:'赶紧查了下，然后告诉自己别慌',w:{anxiety:1,master:1}},{t:'等几天再说，不急',w:{sleeper:3}}
   ]},
   {q:'朋友说"XX板块最近涨疯了"，你？',opts:[
     {t:'赶紧问他买的什么',w:{chaser:2}},
@@ -133,15 +153,15 @@ const questions = [
     {t:'听听，但不动',w:{sleeper:1}}
   ]},
   {q:'刚买完第二天就跌了3%，你？',opts:[
-    {t:'怀疑自己是不是买错了',w:{anxiety:2}},
+    {t:'怀疑自己是不是买错了',w:{anxiety:1}},
     {t:'补一点，摊低成本',w:{master:2}},
-    {t:'正常，短期波动谁说得准',w:{sleeper:3}},
+    {t:'有点不舒服，但跟自己说正常',w:{anxiety:1,master:1}},{t:'正常，短期波动谁说得准',w:{sleeper:3}},
     {t:'后悔，早知道昨天不买',w:{gambler:2,anxiety:1}}
   ]},
   {q:'最近一周你看了几天收益？',opts:[
-    {t:'每天至少看一次',w:{anxiety:3}},
-    {t:'3-4天，想起来就看',w:{anxiety:1,researcher:1}},
-    {t:'1-2天，忙起来就忘了',w:{sleeper:2}},
+    {t:'每天至少看一次',w:{anxiety:2}},
+    {t:'3-4天，想起来就看',w:{researcher:1}},
+    {t:'看了几次，但忍住没操作',w:{anxiety:1,master:2}},{t:'1-2天，忙起来就忘了',w:{sleeper:2}},
     {t:'不看，反正也不操作',w:{sleeper:3}}
   ]},
   {q:'用一个词定义你的投资方式？',opts:[
@@ -152,18 +172,18 @@ const questions = [
   ]},
   {q:'你最近一次卖出，是因为什么？',opts:[
     {t:'赚够了，落袋为安',w:{keeper:2}},
-    {t:'扛不住了，太难受',w:{anxiety:2}},
+    {t:'扛不住了，太难受',w:{anxiety:1}},
     {t:'不看好后市',w:{researcher:2}},
     {t:'我好久没卖过了',w:{sleeper:3}}
   ]},
   {q:'"定投设好就不用管"，你怎么看？',opts:[
     {t:'说得对，我就是这么做的',w:{sleeper:3}},
-    {t:'道理都懂但控制不住要去看',w:{anxiety:3}},
-    {t:'定投太慢了，我自己判断时机',w:{chaser:2}},
+    {t:'道理都懂但控制不住要去看',w:{anxiety:2}},
+    {t:'想不管，但每个月还是会看一眼',w:{anxiety:1,sleeper:1}},{t:'定投太慢了，我自己判断时机',w:{chaser:2}},
     {t:'定投也要讲究方法的',w:{researcher:2}}
   ]},
   {q:'账户里好几个品种在亏，你会？',opts:[
-    {t:'全部卖掉，重新来过',w:{anxiety:2,keeper:1}},
+    {t:'全部卖掉，重新来过',w:{anxiety:1,keeper:1}},
     {t:'只留最看好的，其他砍掉',w:{researcher:2,master:1}},
     {t:'都留着，等它们回来',w:{believer:3}},
     {t:'本来就做好了波动的准备',w:{master:2}}
@@ -177,8 +197,8 @@ const questions = [
   {q:'投资这件事，你最缺的是什么？',opts:[
     {t:'运气 -- "老买在山顶"',w:{gambler:2,chaser:1}},
     {t:'信息 -- "别人知道的比我早"',w:{chaser:2,researcher:1}},
-    {t:'心态 -- "知道该怎么做但做不到"',w:{anxiety:2}},
-    {t:'钱 -- "有更多本金就好了"',w:{}}
+    {t:'心态 -- "知道该怎么做但做不到"',w:{anxiety:1}},
+    {t:'方法——知道原理，但缺一套自己的系统',w:{master:2,researcher:1}},{t:'钱 -- "有更多本金就好了"',w:{}}
   ]}
 ];
 
@@ -260,26 +280,28 @@ function showResult(){
   for(let k in scores){if(scores[k]>bestScore){bestScore=scores[k];best=k;}}
   resultType=best;
   const t=types[best];
-  let html=`<div class="r-emoji">${t.emoji}</div>`;
-  html+=`<div class="r-title">${t.name}</div>`;
-  html+=`<div class="r-tagline">${t.tagline}</div>`;
-  html+=`<div class="r-desc">${t.desc}</div>`;
-  html+=`<div class="card"><h3>⚠️ 你的三个坑</h3><ul>`;
-  t.pits.forEach(p=>html+=`<li>${p}</li>`);
-  html+=`</ul></div>`;
-  html+=`<div class="card"><h3>💡 给你的建议</h3><p style="font-size:14px;color:#444;line-height:1.8">${t.tip}</p></div>`;
-  html+=`<div class="card"><h3>📖 适合你读的书</h3><div class="books">`;
-  t.books.forEach(b=>html+=`<span class="book-tag">${b}</span>`);
-  html+=`</div></div>`;
-  html+=`<div class="bottom-actions">`;
-  html+=`<button class="btn-share" onclick="doShare()">🔗 分享给朋友，看看Ta是什么人格</button>`;
-  html+=`<div class="card" style="text-align:center;margin-top:4px"><p style="font-size:14px;color:#444;line-height:1.7">你是<b>${t.name}</b>型。<br>想搞清楚你为什么总掉进同一个坑？<br>微信搜索 <b style="color:#C47229">律隐堂</b><br>每篇拆一个投资盲区。</p></div>`;
-  html+=`<button class="btn-share" style="margin-top:12px" onclick="startQuiz()">↻ 再测一次</button>`;
-  html+=`</div>`;
+  const rcMap={chaser:1,researcher:2,gambler:3,believer:4,keeper:5,anxiety:6,sleeper:7,master:8};
+  const rc=rcMap[best]||1;
+  let html='<div class="result-card rc'+rc+'">';
+  html+='<div class="r-emoji">'+t.emoji+'</div>';
+  html+='<div class="r-title">'+t.name+'</div>';
+  html+='<div class="r-tagline">'+t.tagline+'</div>';
+  html+='<div class="r-section"><div class="r-section-label">⚠️ 你的三个坑</div><ul class="r-pits">';
+  t.pits.forEach(function(p){html+='<li>'+p+'</li>'});
+  html+='</ul></div>';
+  html+='<div class="r-section"><div class="r-highlight">'+t.tip+'</div></div>';
+  html+='<div class="r-section"><div class="r-section-label">📖 适合你读</div><div class="r-books">';
+  t.books.forEach(function(b){html+='<span class="r-book-tag">'+b+'</span>'});
+  html+='</div></div>';
+  html+='<div class="r-cta">关注 <strong>【律隐堂】</strong>，走一场属于你的投资之路</div>';
+  html+='</div>';
+  html+='<div class="bottom-actions">';
+  html+='<button class="btn-share" onclick="doShare()">🔗 分享给朋友，看看Ta是什么人格</button>';
+  html+='<button class="btn-share" style="margin-top:8px" onclick="startQuiz()">↻ 再测一次</button>';
+  html+='</div>';
   document.getElementById('result-content').innerHTML=html;
   switchPage('page-result');
 }
-
 function doShare(){
   const url=window.location.origin+window.location.pathname+'?type='+resultType;
   const t=types[resultType];
@@ -296,7 +318,14 @@ function doShare(){
 function fallbackCopy(text){
   var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('文案已复制！去微信粘贴发给朋友吧');
 }
+// simple counter
+(function(){
+  var c=parseInt(localStorage.getItem('test_count')||'0')||0;
+  if(!sessionStorage.getItem('tc')){
+    c++;localStorage.setItem('test_count',c);sessionStorage.setItem('tc','1');
+  }
+  document.getElementById('testCountNum').textContent=c;
+})();
 </script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
