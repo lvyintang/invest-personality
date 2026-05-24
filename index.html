@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta property="og:title" content="12题测出你的投资人格：原来你总亏钱是这个原因">
-<meta property="og:description" content="追高、拿不住、频繁操作、抄在山腰……12道题测出你的亏钱姿势">
+<meta property="og:title" content="买基金的人，只有8种结局。你是哪一种？">
+<meta property="og:description" content="12道题测出你的基金投资人格。跟风党、数据控、梭哈型、回本侠……你属于哪一种？">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lvyintang.github.io/invest-personality/">
-<meta itemprop="name" content="12题测出你的投资人格：原来你总亏钱是这个原因">
-<meta itemprop="description" content="追高、拿不住、频繁操作、抄在山腰……12道题测出你的亏钱姿势">
-<meta name="description" content="追高、拿不住、频繁操作、抄在山腰……12道题测出你的亏钱姿势。投资最大的幻觉不是"我能赢"，是"这次不一样"。">
-<title>12题测出你的投资人格：原来你总亏钱是这个原因</title>
+<meta itemprop="name" content="买基金的人，只有8种结局。你是哪一种？">
+<meta itemprop="description" content="12道题测出你的基金投资人格。追高、拿不住、频繁操作——你中了几个？">
+<meta name="description" content="买基金的人只有8种结局：跟风党、数据控、梭哈型、赛道粉、回本侠、盯盘族、躺平族、纪律型。12道题测出你是哪一种。">
+<title>买基金的人，只有8种结局。你是哪一种？</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#faf8f5;color:#2c2c2c;min-height:100vh}
@@ -71,8 +71,8 @@ body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;b
 <div class="page active" id="page-title">
   <div class="title-page">
     <div class="emoji" id="titleEmoji">📊</div>
-    <h1 id="titleH1">12题测出你的投资人格</h1>
-    <p class="subtitle" id="titleSub">原来你总亏钱是这个原因</p>
+    <h1 id="titleH1">买基金的人，只有8种结局</h1>
+    <p class="subtitle" id="titleSub">12道题测出你是哪一种</p>
     <div style="font-size:11px;color:#C47229;margin-bottom:8px;letter-spacing:1px">🧩 本测试针对基金投资者</div>
     <div id="friendBanner" style="display:none;background:#fef9f2;border:1px solid #f0e4d0;border-radius:12px;padding:14px 18px;margin-bottom:20px;font-size:14px;color:#C47229;line-height:1.6"></div>
     <p class="intro" id="titleIntro">追高、拿不住、频繁操作、抄在山腰……<br>这些事儿你干过没有？<br><br>投资最大的幻觉不是"我能赢"，<br>是"这次不一样"。<br><br>12道题，测出你的亏钱姿势。</p>
@@ -145,10 +145,10 @@ const questions = [
     {t:'不看，反正也不操作',w:{sleeper:3}}
   ]},
   {q:'用一个词定义你的投资方式？',opts:[
-    {t:'信仰 —— "我信这个赛道"',w:{believer:3}},
-    {t:'研究 —— "数据告诉我该买"',w:{researcher:3}},
-    {t:'感觉 —— "我觉得时机到了"',w:{gambler:2,chaser:1}},
-    {t:'规则 —— "到了条件就执行"',w:{master:3}}
+    {t:'信仰 -- "我信这个赛道"',w:{believer:3}},
+    {t:'研究 -- "数据告诉我该买"',w:{researcher:3}},
+    {t:'感觉 -- "我觉得时机到了"',w:{gambler:2,chaser:1}},
+    {t:'规则 -- "到了条件就执行"',w:{master:3}}
   ]},
   {q:'你最近一次卖出，是因为什么？',opts:[
     {t:'赚够了，落袋为安',w:{keeper:2}},
@@ -175,19 +175,19 @@ const questions = [
     {t:'没事，机会有的是',w:{master:1}}
   ]},
   {q:'投资这件事，你最缺的是什么？',opts:[
-    {t:'运气 —— "老买在山顶"',w:{gambler:2,chaser:1}},
-    {t:'信息 —— "别人知道的比我早"',w:{chaser:2,researcher:1}},
-    {t:'心态 —— "知道该怎么做但做不到"',w:{anxiety:2}},
-    {t:'钱 —— "有更多本金就好了"',w:{}}
+    {t:'运气 -- "老买在山顶"',w:{gambler:2,chaser:1}},
+    {t:'信息 -- "别人知道的比我早"',w:{chaser:2,researcher:1}},
+    {t:'心态 -- "知道该怎么做但做不到"',w:{anxiety:2}},
+    {t:'钱 -- "有更多本金就好了"',w:{}}
   ]}
 ];
 
 // 8种人格定义
 const types = {
   chaser:{emoji:'🦅',name:'跟风党',tagline:'你总是在涨起来之后才发现机会。',
-    desc:'你不是不想赚钱，你是太想赚钱了——所以你总是在涨到一半的时候才发现它，冲进去，然后它就停了。每次看到别人赚钱，你就坐不住。每次坐不住，你就买在山顶。',
+    desc:'你不是不想赚钱，你是太想赚钱了--所以你总是在涨到一半的时候才发现它，冲进去，然后它就停了。每次看到别人赚钱，你就坐不住。每次坐不住，你就买在山顶。',
     pits:['你的买入时机大概领先下跌3天','你对"出圈"的投资标的毫无抵抗力','你以为自己在追机会，其实在追亏掉的钱'],
-    tip:'给自己定一条线。什么样的线不重要——重要的是有一条线，写下来，然后管住自己。',
+    tip:'给自己定一条线。什么样的线不重要--重要的是有一条线，写下来，然后管住自己。',
     books:['《投资最重要的事》','《"错误"的行为》','《漫步华尔街》']},
   researcher:{emoji:'📊',name:'数据控',tagline:'你算得太多，看得太少。',
     desc:'买基金之前拉三张表、看五份研报。你觉得数据够多就能预测方向。但你忘了一件事：市场不在乎你算得多认真。你最大的问题不是不懂，是你太相信自己懂了。',
@@ -204,24 +204,24 @@ const types = {
     pits:['"长期看好"是不卖的理由，不是买的理由','信仰和执念之间只差一条止损线','你所有持仓都叫"信仰"，但只有一个看懂了'],
     tip:'把所有持仓写下来，每个只写一句话：我具体信它什么。写不出来就不配。',
     books:['《巴菲特致股东的信》','《聪明的投资者》','《证券分析》']},
-  keeper:{emoji:'🐢',name:'回本侠',tagline:'涨一点就跑，亏了死扛。',
-    desc:'止损速度是光速，止盈也是。涨10%就想卖，跌5%就想跑。结果：你所有交易都做对了方向——但从来没拿到过大的涨幅。在大钱面前永远在逃跑。',
+  keeper:{emoji:'🤦',name:'回本侠',tagline:'涨一点就跑，亏了死扛。',
+    desc:'止损速度是光速，止盈也是。涨10%就想卖，跌5%就想跑。结果：你所有交易都做对了方向--但从来没拿到过大的涨幅。在大钱面前永远在逃跑。',
     pits:['损失厌恶让你过早锁定盈利','账户里剩下的都是亏的，盈利的早卖了','年化收益率被无数次"落袋为安"吃掉'],
     tip:'试试：盈利的品种给自己定一个持有期限，到期前不卖。打破"钱在手里才安全"的条件反射。',
     books:['《反脆弱》','《金钱心理学》','《纳瓦尔宝典》']},
   anxiety:{emoji:'⏰',name:'盯盘族',tagline:'你盯盘的时间比上班还长。',
-    desc:'每天打开App至少三次。红的就觉得今天还行，绿的就心里一紧。设了定投——但每天手动补仓。你以为在"关注市场"，其实在给焦虑插电。',
+    desc:'每天打开App至少三次。红的就觉得今天还行，绿的就心里一紧。设了定投--但每天手动补仓。你以为在"关注市场"，其实在给焦虑插电。',
     pits:['你形成了"打开App = 情绪波动"的条件反射','定投本是"忘掉它"的事，你变成了每天打卡','所有操作都在焦虑峰值上做出的'],
     tip:'试试每周只看两次账户。第一次会难受，第三次会想不起来。把App收到文件夹最深处。',
     books:['《金钱心理学》','《当下的力量》']},
   sleeper:{emoji:'🧘',name:'躺平族',tagline:'你什么都不做，反而赢了很多人。',
-    desc:'买了就放那，跌了不看、涨了不卖、朋友说什么都不动。你不是懒，你是看透了——所有折腾的人最后收益都没你高。你的收益率大概率跑赢了你身边所有焦虑的人。',
+    desc:'买了就放那，跌了不看、涨了不卖、朋友说什么都不动。你不是懒，你是看透了--所有折腾的人最后收益都没你高。你的收益率大概率跑赢了你身边所有焦虑的人。',
     pits:['真正的风险是买了不理解的东西然后"躺平"','躺平不等于不评估，每年至少审视一次','极端事件时可能被震醒做错操作'],
     tip:'继续保持。唯一加的动作：每年生日那天做一次账户体检。',
     books:['《赢得输家的游戏》','《漫步华尔街》','《共同基金常识》']},
   master:{emoji:'🦉',name:'纪律型',tagline:'你有一套自己的方法，而且你信它。',
-    desc:'别人焦虑时你在加仓，别人疯狂时你在等。你不是不亏钱——而是亏的时候你知道为什么亏。你不是不犯错——而是犯错后知道该改什么。你是最稳的那个。',
-    pits:['纪律可能让你错过泡沫红利','有时会被误解为"太保守"','最大的风险：你太自信了——和数据控只有一线之隔'],
+    desc:'别人焦虑时你在加仓，别人疯狂时你在等。你不是不亏钱--而是亏的时候你知道为什么亏。你不是不犯错--而是犯错后知道该改什么。你是最稳的那个。',
+    pits:['纪律可能让你错过泡沫红利','有时会被误解为"太保守"','最大的风险：你太自信了--和数据控只有一线之隔'],
     tip:'你已经很好了。唯一要警惕的：当你开始觉得自己不会犯错的时候。',
     books:['《证券分析》','《债务危机》','《聪明的投资者》']}
 };
@@ -236,9 +236,9 @@ let currentQ=-1,scores=null,resultType=null;
     document.getElementById('titleH1').textContent='你的朋友是"'+types[type].name+'"';
     document.getElementById('titleSub').textContent='你也来测测，看你们是不是同一类人';
     document.getElementById('titleEmoji').textContent=types[type].emoji;
-    document.getElementById('titleIntro').innerHTML='有人把这12道题发给了你。<br><br>不是巧合——Ta测出了<b>'+types[type].name+'</b>，<br>想知道你是什么。';
+    document.getElementById('titleIntro').innerHTML='有人把这12道题发给了你。<br><br>不是巧合--Ta测出了<b>'+types[type].name+'</b>，<br>想知道你是什么。';
     document.getElementById('friendBanner').style.display='block';
-    document.getElementById('friendBanner').innerHTML='👋 你的朋友是 <b>'+types[type].emoji+' '+types[type].name+'</b> —— '+types[type].tagline;
+    document.getElementById('friendBanner').innerHTML='👋 你的朋友是 <b>'+types[type].emoji+' '+types[type].name+'</b> -- '+types[type].tagline;
   }
 })();
 
@@ -283,7 +283,7 @@ function showResult(){
 function doShare(){
   const url=window.location.origin+window.location.pathname+'?type='+resultType;
   const t=types[resultType];
-  const text='我测出来是'+t.emoji+t.name+'——"'+t.tagline+'"\n12题测出你的投资人格，你也来试试 '+url;
+  const text='我测出来是'+t.emoji+t.name+'--"'+t.tagline+'"\n12题测出你的投资人格，你也来试试 '+url;
   const isWx=/MicroMessenger/i.test(navigator.userAgent);
   if(isWx){
     document.getElementById('shareTip').classList.add('show');
